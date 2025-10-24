@@ -143,10 +143,18 @@ SIMPLE_JWT = {
 
 # CORS for React frontend:
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # React dev server
+    'http://localhost:5173',  # React dev server
 ]
 
 AUTH_USER_MODEL = 'store.User'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),  # or days=1
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),  # optional
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
