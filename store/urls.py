@@ -4,10 +4,10 @@ from .views import ProductViewSet, UserSignupView, MyTokenObtainPairView, UserVi
 
 router = DefaultRouter()
 router.register(r'products', ProductViewSet, basename='products')
-router.register(r'users', UserViewSet, basename='user')  # <-- add this
+router.register(r'users', UserViewSet, basename='users')
 
 urlpatterns = [
     path('', include(router.urls)),
     path('signup/', UserSignupView.as_view(), name='signup'),
-    path('login/', MyTokenObtainPairView.as_view(), name='login'),  # JWT login
+    path('login/', MyTokenObtainPairView.as_view(), name='login'),
 ]

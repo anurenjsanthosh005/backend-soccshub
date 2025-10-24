@@ -37,6 +37,13 @@ class Product(models.Model):
     is_active = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
 
+    def delete(self, *args, **kwargs):
+        # Delete all related images from media storage
+        for img in self.images.all():
+            if img.image and img.image.storage.exists(img.image.name):
+                img.image.delete(save=False)
+        super().delete(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
